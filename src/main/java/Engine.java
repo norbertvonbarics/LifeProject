@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -5,33 +7,43 @@ import java.awt.event.KeyListener;
 
 public class Engine extends JComponent implements KeyListener {
 
-  Board myArray = new Board();
+  private Board myArray = new Board();
 
-  int dimension = 700;
+  private ArrayList<Tile> newTileList = new ArrayList<>();
+
+  private int dimension = 800;
+  int counter = 1;
 
   Engine() {
-
     setPreferredSize(new Dimension(dimension, dimension));
     setVisible(true);
-  }
 
-  @Override
-  public void paint(Graphics graphics) {
-    super.paint(graphics);
     myArray.fillLists();
-
-    for (int i = 0; i < myArray.size; i++) {
-      for (int j = 0; j < myArray.size; j++) {
-        if (myArray.isAlive(i, j)) {
-          graphics.setColor(Color.black);
-          graphics
-              .fillRect(i * (dimension / myArray.size), j * (dimension / myArray.size),
-                  dimension / myArray.size, dimension / myArray.size);
+    for (int i = 0; i < Board.array2d().size(); i++) {
+      for (int j = 0; j < Board.array2d().size(); j++) {
+        Tile newTile = new Tile(i * dimension / Board.array2d().size(),
+            j * dimension / Board.array2d().size(),
+            Board.isAlive(i, j));
+        if (newTile.alive) {
+          newTileList.add(newTile);
         }
       }
     }
   }
 
+  @Override
+  public void paint(Graphics graphics) {
+    super.paint(graphics);
+    for (int i = 0; i < newTileList.size(); i++) {
+      graphics.setColor(Color.black);
+      graphics
+          .fillRect(newTileList.get(i).posX, newTileList.get(i).posY,
+              dimension / Board.array2d().size(), dimension / Board.array2d().size());
+    }
+    if (counter > 0) {
+      Motion.motion();
+    }
+  }
 
   @Override
   public void keyTyped(KeyEvent e) {
@@ -46,23 +58,11 @@ public class Engine extends JComponent implements KeyListener {
 
     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
       System.out.println("start");
-      for (int i = 0; i < myArray.size; i++) {
-        for (int j = 0; j < myArray.size; j++) {
-          if ((myArray.checkNeighbours(i, j) < 2) && myArray.isAlive(i, j)) {
-            myArray.setDead(i, j);
-          } else if ((myArray.checkNeighbours(i, j) == 2 || myArray.checkNeighbours(i, j) == 3)
-              && myArray.isAlive(i, j)) {
-            myArray.setAlive(i, j);
-          } else if (myArray.checkNeighbours(i, j) > 3 && myArray.isAlive(i, j)) {
-            myArray.setDead(i, j);
-          } else if (myArray.checkNeighbours(i, j) == 3 && !myArray.isAlive(i, j)) {
-            myArray.setAlive(i, j);
-          }
-        }
-      }
+      Motion move = new Motion();
+      move.motion();
     } else if (e.getKeyCode() == KeyEvent.VK_S) {
       System.out.println("stop");
-      
+    counter = 0;
     }
     repaint();
   }

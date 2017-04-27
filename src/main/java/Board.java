@@ -3,22 +3,21 @@ import java.util.List;
 
 class Board {
 
-  int size = 100;
-  List<List<Integer>> multi = new ArrayList<>();
-
-  List<List<Integer>> array2d() {
+  static int size = 10;
+  static List<List<Integer>> multi = new ArrayList<>();
+  static List<List<Integer>> array2d() {
     return multi;
   }
 
-  boolean isAlive(int posX, int posY) {
-    return (array2d().get(posX).get(posY) == 1);
+  static boolean isAlive(int posX, int posY) {
+    return (multi.get(posX).get(posY) == 1);
   }
 
-  public void setDead(int posX, int posY) {
+  static void setDead(int posX, int posY) {
     multi.get(posX).set(posY, 0);
   }
 
-  public void setAlive(int posX, int posY) {
+  static void setAlive(int posX, int posY) {
     multi.get(posX).set(posY, 1);
   }
 
@@ -33,33 +32,33 @@ class Board {
     }
   }
 
-  int checkNeighbours(int posX, int posY) {
-    List<Boolean> checkList = new ArrayList<>();
-
+  static int checkNeighbours(int posX, int posY) {
     int counter = 0;
 
-    boolean pos1 = isAlive(posX - 1, posY);
-    boolean pos2 = isAlive(posX, posY - 1);
-    boolean pos3 = isAlive(posX + 1, posY);
-    boolean pos4 = isAlive(posX, posY + 1);
-    boolean pos5 = isAlive(posX - 1, posY - 1);
-    boolean pos6 = isAlive(posX + 1, posY + 1);
-    boolean pos7 = isAlive(posX + 1, posY - 1);
-    boolean pos8 = isAlive(posX - 1, posY + 1);
+    if (posX > 0 && isAlive(posX - 1, posY)) {
+      counter++;
+    }
+    if (posX > 0 && posY < size - 1 && isAlive(posX - 1, posY + 1)) {
+      counter++;
+    }
 
-    checkList.add(pos1);
-    checkList.add(pos2);
-    checkList.add(pos3);
-    checkList.add(pos4);
-    checkList.add(pos5);
-    checkList.add(pos6);
-    checkList.add(pos7);
-    checkList.add(pos8);
-
-    for (boolean item : checkList) {
-      if (item) {
-        counter++;
-      }
+    if (posY > 0 && isAlive(posX, posY - 1)) {
+      counter++;
+    }
+    if (posY > 0 && posX < size - 1 && isAlive(posX + 1, posY - 1)) {
+      counter++;
+    }
+    if (posX > 0 && posY > 0 && isAlive(posX - 1, posY - 1)) {
+      counter++;
+    }
+    if (posX < size - 1 && isAlive(posX + 1, posY)) {
+      counter++;
+    }
+    if (posY < size - 1 && isAlive(posX, posY + 1)) {
+      counter++;
+    }
+    if (posX < size - 1 && posY < size - 1 && isAlive(posX + 1, posY + 1)) {
+      counter++;
     }
     return counter;
   }
