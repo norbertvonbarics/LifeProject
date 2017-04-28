@@ -1,6 +1,6 @@
 class Board {
 
-  private static int size = 200;
+  private static int size = 50;
   private static int[][] multi = new int[size][size];
 
   static boolean isAlive(int posX, int posY) {
@@ -18,8 +18,12 @@ class Board {
   void fillLists() {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
-        int random = (int) (Math.random() * 2);
-        multi[i][j] = random;
+        if(j % 2 == 0) {
+          int random = (int) (Math.random() * 2);
+          multi[i][j] = random;
+        } else {
+          multi[i][j] = 0;
+        }
       }
     }
   }
@@ -33,7 +37,6 @@ class Board {
     if (posX > 0 && posY < size - 1 && isAlive(posX - 1, posY + 1)) {
       counter++;
     }
-
     if (posY > 0 && isAlive(posX, posY - 1)) {
       counter++;
     }
