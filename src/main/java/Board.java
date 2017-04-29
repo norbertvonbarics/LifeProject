@@ -1,6 +1,6 @@
 class Board {
 
-  private static int size = 50;
+  private static int size = 200;
   private static int[][] multi = new int[size][size];
 
   static boolean isAlive(int posX, int posY) {

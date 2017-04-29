@@ -1,22 +1,19 @@
-import java.time.LocalDate;
+class Stats {
 
-public class Stats {
+  private int minBitizen;
+  private int maxBitizen;
 
-  int minBitizen;
-  int maxBitizen;
-  LocalDate time;
-
-  Stats(int minBitizen, int maxBitizen, LocalDate time) {
-    this.minBitizen = minBitizen;
-    this.maxBitizen = maxBitizen;
-    this.time = time;
+  Stats() {
+    this.minBitizen = Board.arrayToString().length();
+    this.maxBitizen = 0;
   }
 
   int getMinBitizen(int numberAlive) {
     if (numberAlive < minBitizen) {
       minBitizen = numberAlive;
     }
-    return numberAlive;
+    System.out.println(Board.array2d().length);
+    return minBitizen;
   }
 
   int getMaxBitizen(int numberAlive) {
