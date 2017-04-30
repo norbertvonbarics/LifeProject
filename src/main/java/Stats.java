@@ -12,7 +12,6 @@ class Stats {
     if (numberAlive < minBitizen) {
       minBitizen = numberAlive;
     }
-    System.out.println(Board.array2d().length);
     return minBitizen;
   }
 
