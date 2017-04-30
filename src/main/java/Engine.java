@@ -34,7 +34,7 @@ public class Engine extends JComponent {
     for (int i = 0; i < Board.array2d().length; i++) {
       for (int j = 0; j < Board.array2d().length; j++) {
 
-        Tile newTile = new Tile(i, j, Board.isAlive(i, j));
+        Tile newTile = new Tile(i, j, Alive.isAlive(i, j));
 
         if (newTile.alive) {
           tempList.add(newTile);
