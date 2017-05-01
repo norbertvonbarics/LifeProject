@@ -7,7 +7,7 @@ public class Engine extends JComponent {
   private Board myArray = new Board();
   private ArrayList<Tile> newTileList = new ArrayList<>();
 
-  Stats stat = new Stats();
+  private Stats stat = new Stats();
   private int dimension = 800;
 
   Engine() {
