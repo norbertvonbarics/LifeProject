@@ -16,7 +16,7 @@ class Stats {
   }
 
   int getMaxBitizen(int numberAlive) {
-    if(numberAlive > maxBitizen) {
+    if (numberAlive > maxBitizen) {
       maxBitizen = numberAlive;
     }
     return maxBitizen;

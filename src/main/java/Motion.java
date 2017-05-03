@@ -1,5 +1,3 @@
-
-
 class Motion {
 
   static int counter = 0;
@@ -7,7 +5,7 @@ class Motion {
   private static int[][] toLive = new int[Board.size][Board.size];
   private static int[][] toDead = new int[Board.size][Board.size];
 
-  static void makeThemLive() {
+  static int[][] makeThemLive() {
     for (int i = 0; i < Board.array2d().length; i++) {
       for (int j = 0; j < Board.array2d().length; j++) {
         if (Neighbour.checkNeighbours(i, j) == 3) {
@@ -17,10 +15,10 @@ class Motion {
         }
       }
     }
-    //return toLive;
+    return toLive;
   }
 
-  static void makeThemDead() {
+  static int[][] makeThemDead() {
     for (int i = 0; i < Board.array2d().length; i++) {
       for (int j = 0; j < Board.array2d().length; j++) {
         if (Neighbour.checkNeighbours(i, j) > 3) {
@@ -32,7 +30,7 @@ class Motion {
         }
       }
     }
-  //  return toDead;
+    return toDead;
   }
 
   static void motion() {

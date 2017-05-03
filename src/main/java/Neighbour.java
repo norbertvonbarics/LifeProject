@@ -1,5 +1,5 @@
-class Neighbour
-{
+class Neighbour {
+
   static int checkNeighbours(int posX, int posY) {
     int counter = 0;
 
