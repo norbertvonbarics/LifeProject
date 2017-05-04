@@ -14,7 +14,7 @@ class Board {
   void fillLists() {
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
-        if(j < 110 && j > 90 && i < 110 && i > 90 && i % 2 == 0) {
+        if (j < 150 && j > 50 && i < 150 && i > 50) {
           int random = (int) (Math.random() * 2);
           multi[i][j] = random;
         } else {

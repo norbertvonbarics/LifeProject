@@ -54,6 +54,9 @@ public class Engine extends JComponent {
     } catch (InterruptedException ex) {
       Thread.currentThread().interrupt();
     }
+
+    Motion.makeThemLive();
+    Motion.makeThemDead();
     Motion.motion();
     repaint();
   }
