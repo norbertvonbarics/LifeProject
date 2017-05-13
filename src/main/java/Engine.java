@@ -15,6 +15,7 @@ public class Engine extends JComponent {
     setVisible(true);
 
     myArray.fillLists();
+    //myArray.spacecraft();
   }
 
   @Override
@@ -50,7 +51,7 @@ public class Engine extends JComponent {
     graphics.drawString("Max: " + stat.getMaxBitizen(newTileList.size()), 820, 140);
 
     try {
-      Thread.sleep(1000);
+      Thread.sleep(50);
     } catch (InterruptedException ex) {
       Thread.currentThread().interrupt();
     }
