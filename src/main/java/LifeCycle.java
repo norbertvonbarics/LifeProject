@@ -1,4 +1,4 @@
-class Motion {
+class LifeCycle {
 
   static int counter = 0;
 
@@ -33,9 +33,12 @@ class Motion {
     return toDead;
   }
 
-  static void motion() {
+  static void lifeCycle() {
+    makeThemLive();
+    makeThemDead();
     for (int i = 0; i < Board.array2d().length; i++) {
       for (int j = 0; j < Board.array2d().length; j++) {
+
         if (toLive[i][j] == 1 && toDead[i][j] == 1) {
           Board.setAlive(i, j);
         }
